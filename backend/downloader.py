@@ -9,14 +9,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_DIR = os.path.join(BASE_DIR, "downloads")
 FFMPEG_DIR = os.path.join(BASE_DIR, "ffmpeg")
 
-# Resolution → yt-dlp format selector
+# Resolution → yt-dlp format selector (Flexible, letting FFmpeg handle MP4 conversion)
 QUALITY_MAP = {
-    "best":  "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio/best",
-    "4k":    "bestvideo[height<=2160][ext=mp4]+bestaudio[ext=m4a]/best[height<=2160]",
-    "1080p": "bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080]",
-    "720p":  "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720]",
-    "480p":  "bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480]",
-    "360p":  "bestvideo[height<=360][ext=mp4]+bestaudio[ext=m4a]/best[height<=360]",
+    "best":  "bestvideo+bestaudio/best",
+    "4k":    "bestvideo[height<=2160]+bestaudio/best[height<=2160]",
+    "1080p": "bestvideo[height<=1080]+bestaudio/best[height<=1080]",
+    "720p":  "bestvideo[height<=720]+bestaudio/best[height<=720]",
+    "480p":  "bestvideo[height<=480]+bestaudio/best[height<=480]",
+    "360p":  "bestvideo[height<=360]+bestaudio/best[height<=360]",
 }
 
 AUDIO_FORMAT = "bestaudio/best"
@@ -108,6 +108,9 @@ class DownloadManager:
                 "progress_hooks":  [self._make_hook(task_id, info)],
                 "noplaylist":      not is_playlist,
             }
+
+            if fmt == "video":
+                opts["merge_output_format"] = "mp4"
 
             ffmpeg = self._ffmpeg_path()
             if ffmpeg:
