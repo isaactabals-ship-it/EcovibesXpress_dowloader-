@@ -49,6 +49,13 @@ start_app.bat
 ```
 *Se abrirá automáticamente tu navegador en **http://localhost:5173** con la aplicación lista para usar.*
 
+### 🔄 3️⃣ Mantenerse actualizado
+Si deseas descargar las últimas mejoras y correcciones del programa, haz doble clic en:
+```powershell
+update.bat
+```
+*Este script descargará automáticamente los cambios más recientes desde GitHub y actualizará las dependencias necesarias.*
+
 ---
 
 ## 📂 Estructura del Proyecto
@@ -62,6 +69,7 @@ video_downloader-ecovibesxpress/
 ├── ffmpeg/             # Binarios de FFmpeg (ignorado en git)
 ├── .gitignore          # Configuración de archivos ignorados
 ├── install.bat         # Script de instalación automática
+├── update.bat          # Script de actualización del programa
 ├── start_app.bat       # Script de arranque de la aplicación
 └── README.md           # Este archivo
 ```
