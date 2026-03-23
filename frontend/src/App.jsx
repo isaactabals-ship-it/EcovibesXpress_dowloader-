@@ -103,7 +103,7 @@ export default function App() {
       <div style={{ position: 'relative', zIndex: 1, minHeight: '100vh', padding: '40px 20px 60px' }}>
         {/* ── Header ── */}
         <header className="fade-in-up" style={{ textAlign: 'center', marginBottom: 40 }}>
-          <div style={{ fontSize: '2.8rem', marginBottom: 8 }}>⚡</div>
+          <img src="/favicon.png" alt="EcovibesXpress Logo" style={{ width: 80, height: 80, marginBottom: 16, filter: 'drop-shadow(0 0 15px rgba(168, 85, 247, 0.4))' }} className="fade-in-up" />
           <h1 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 800, background: 'linear-gradient(135deg, #c084fc, #a855f7, #7c3aed)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.02em' }}>
             EcovibesXpress
           </h1>

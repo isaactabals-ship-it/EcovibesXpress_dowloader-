@@ -1,7 +1,7 @@
-# ⚡ EcovibesXpress — YouTube Downloader
+# <img src="resources/logo-ecovibesxpress.png" width="36" align="center"> EcovibesXpress — YouTube Downloader
 
 <p align="center">
-  <img src="frontend/src/assets/react.svg" alt="App Logo" width="120">
+  <img src="resources/logo-ecovibesxpress.png" alt="App Logo" width="120">
 </p>
 
 Una aplicación local moderna y potente para descargar vídeos y listas de reproducción de YouTube en formato MP4 o extraer audio en MP3 de alta calidad. 
