@@ -67,12 +67,21 @@ video_downloader-ecovibesxpress/
 ├── docs/               # Documentación y especificaciones iniciales
 ├── downloads/          # Carpeta de salida por defecto (ignorado en git)
 ├── ffmpeg/             # Binarios de FFmpeg (ignorado en git)
+├── resources/          # Logos e iconos del programa
 ├── .gitignore          # Configuración de archivos ignorados
 ├── install.bat         # Script de instalación automática
 ├── update.bat          # Script de actualización del programa
 ├── start_app.bat       # Script de arranque de la aplicación
+├── generate_shortcut.bat # Generador de acceso directo con icono
 └── README.md           # Este archivo
 ```
+
+### 4️⃣ Generar un acceso directo (Opcional)
+Si deseas tener un acceso directo con el icono oficial de la aplicación, ejecuta:
+```powershell
+generate_shortcut.bat
+```
+*Esto creará un archivo **EcovibesXpress.lnk** en la carpeta principal que podrás mover al escritorio o anclar al inicio.*
 
 ---
 

@@ -29,8 +29,10 @@ downloads/*
 # IDEs & System
 .vscode/
 .idea/
+# System & Shortcuts
 .DS_Store
 Thumbs.db
+*.lnk
 
 # Other
 dist/
