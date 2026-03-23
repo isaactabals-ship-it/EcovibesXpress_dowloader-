@@ -39,7 +39,7 @@ export default function URLInput({ onSubmit, loading }) {
           ref={inputRef}
           type="url"
           className={`url-input ${dragging ? 'drag-over' : ''}`}
-          style={{ paddingLeft: 44, paddingRight: 120 }}
+          style={{ paddingLeft: 44, paddingRight: 135 }}
           placeholder="Pega o arrastra el enlace de YouTube aquí…"
           value={url}
           onChange={e => setUrl(e.target.value)}
@@ -57,7 +57,7 @@ export default function URLInput({ onSubmit, loading }) {
             type="button"
             onClick={() => setUrl('')}
             style={{
-              position: 'absolute', right: 100, top: '50%', transform: 'translateY(-50%)',
+              position: 'absolute', right: 118, top: '50%', transform: 'translateY(-50%)',
               background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)',
               cursor: 'pointer', fontSize: '1rem', padding: '4px 8px',
               transition: 'color 0.15s'
