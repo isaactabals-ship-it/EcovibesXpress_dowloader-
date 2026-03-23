@@ -5,7 +5,7 @@ function formatSize(bytes) {
   return `${(bytes / 1024).toFixed(0)} KB`
 }
 
-export default function DownloadHistory({ files, onRefresh, loading }) {
+export default function DownloadHistory({ files, onRefresh, onOpenFolder, loading }) {
   if (!files || files.length === 0) return null
 
   const ext = (name) => name.split('.').pop().toUpperCase()
@@ -22,15 +22,25 @@ export default function DownloadHistory({ files, onRefresh, loading }) {
         <h3 style={{ fontWeight: 700, fontSize: '0.95rem', color: 'rgba(255,255,255,0.9)' }}>
           📂 Descargas recientes
         </h3>
-        <button
-          onClick={onRefresh}
-          disabled={loading}
-          style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', cursor: 'pointer', fontSize: '0.85rem', transition: 'color 0.15s' }}
-          onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.8)'}
-          onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.4)'}
-        >
-          {loading ? '⟳' : '↻ Actualizar'}
-        </button>
+        <div style={{ display: 'flex', gap: 14 }}>
+          <button
+            onClick={onOpenFolder}
+            style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', cursor: 'pointer', fontSize: '0.85rem', transition: 'color 0.15s' }}
+            onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.8)'}
+            onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.4)'}
+          >
+            📂 Abrir carpeta
+          </button>
+          <button
+            onClick={onRefresh}
+            disabled={loading}
+            style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', cursor: 'pointer', fontSize: '0.85rem', transition: 'color 0.15s' }}
+            onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.8)'}
+            onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.4)'}
+          >
+            {loading ? '⟳' : '↻ Actualizar'}
+          </button>
+        </div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxHeight: 280, overflowY: 'auto' }}>

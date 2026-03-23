@@ -93,6 +93,14 @@ export default function App() {
     }
   }
 
+  const handleOpenFolder = async () => {
+    try {
+      await axios.post('/api/open-folder')
+    } catch {
+      // ignore
+    }
+  }
+
   const canDownload = videoInfo && !downloading && !loadingInfo
 
   return (
@@ -156,7 +164,7 @@ export default function App() {
           {events.length > 0 && <DownloadProgress events={events} />}
 
           {/* Download history */}
-          <DownloadHistory files={files} onRefresh={fetchFiles} loading={loadingFiles} />
+          <DownloadHistory files={files} onRefresh={fetchFiles} onOpenFolder={handleOpenFolder} loading={loadingFiles} />
         </main>
 
         {/* Footer */}
