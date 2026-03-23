@@ -2,6 +2,7 @@ import uuid
 import asyncio
 import os
 import json
+import subprocess
 from threading import Thread
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -117,14 +118,16 @@ def list_downloads():
         files.sort(key=lambda x: x["modified"], reverse=True)
     except Exception:
         pass
+    return {"files": files[:50]}
+
 # ── Open local folder ────────────────────────────────────────────────────────
 @app.post("/api/open-folder")
 def open_folder():
     """Open the local downloads directory in the system's file explorer."""
     try:
-        # Cross-platform way to open a folder
-        # (Since the user prompt mentions Windows, startfile is best)
-        os.startfile(manager.output_dir)
+        # Using subprocess for better focus handling on Windows
+        path = os.path.abspath(manager.output_dir)
+        subprocess.Popen(["explorer", path])
         return {"status": "ok"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

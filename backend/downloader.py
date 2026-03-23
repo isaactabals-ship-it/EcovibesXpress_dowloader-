@@ -137,6 +137,10 @@ class DownloadManager:
 
     def _make_hook(self, task_id: str, meta: dict):
         def hook(d):
+            # Extract current entry title if available (useful for playlists)
+            info_dict = d.get('info_dict', {})
+            current_title = info_dict.get('title')
+
             if d["status"] == "downloading":
                 total = d.get("total_bytes") or d.get("total_bytes_estimate", 0)
                 downloaded = d.get("downloaded_bytes", 0)
@@ -147,11 +151,13 @@ class DownloadManager:
                     "speed":     d.get("speed"),
                     "eta":       d.get("eta"),
                     "filename":  d.get("filename", ""),
+                    "current_title": current_title,
                 })
             elif d["status"] == "finished":
                 self._push(task_id, {
                     "status":   "processing",
                     "filename": d.get("filename", ""),
+                    "current_title": current_title,
                 })
         return hook
 

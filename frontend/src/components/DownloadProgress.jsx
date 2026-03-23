@@ -34,6 +34,11 @@ export default function DownloadProgress({ events }) {
           <p style={{ fontWeight: 600, fontSize: '0.95rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {start?.title || 'Descargando…'}
           </p>
+          {last.current_title && last.current_title !== start?.title && (
+            <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.7)', marginTop: 2, fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              ▶ {last.current_title}
+            </p>
+          )}
           {start?.count > 1 && (
             <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>
               📋 Playlist · {start.count} vídeos
