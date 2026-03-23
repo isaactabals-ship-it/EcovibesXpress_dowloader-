@@ -126,6 +126,10 @@ body {
   transition: border-color 0.2s;
 }
 .quality-select:focus { border-color: var(--accent); }
+.quality-select option {
+  background: #1a1a24;
+  color: #e2e8f0;
+}
 
 /* ─ Progress Bar ─────────────────────────────────── */
 .progress-track {
