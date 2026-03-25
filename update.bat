@@ -17,9 +17,20 @@ if errorlevel 1 (
 )
 
 REM ─── Update from GitHub ──────────────────────────────────────────
-echo  [1/2] Sincronizando con el repositorio remoto...
-git fetch --all
-git reset --hard origin/main
+set "REPO_URL=https://github.com/isaactabals-ship-it/EcovibesXpress_dowloader-.git"
+
+if not exist ".git" (
+    echo  [!] El repositorio no esta inicializado. Descargando archivos...
+    git init
+    git remote add origin %REPO_URL%
+    git fetch --depth 1
+    git reset --hard origin/main
+) else (
+    echo  [1/2] Sincronizando con el repositorio remoto...
+    git remote set-url origin %REPO_URL%
+    git fetch --all
+    git reset --hard origin/main
+)
 
 echo.
 echo  [2/2] Verificando y actualizando dependencias...
