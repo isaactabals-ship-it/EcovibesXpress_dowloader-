@@ -11,12 +11,18 @@ echo.
 REM ─── Check Git ───────────────────────────────────────────────────
 git --version >nul 2>&1
 if errorlevel 1 (
-    echo  [ERROR] Git no encontrado. Reinstala el programa o instala Git.
-    pause
-    exit /b 1
+    echo.
+    echo  [AVISO] Git no detectado. Intentando descargar directamente desde GitHub...
+    powershell -Command "Write-Host 'Descargando ultima version (ZIP)...' -ForegroundColor CyAn; Invoke-WebRequest -Uri 'https://github.com/isaactabals-ship-it/EcovibesXpress_dowloader-/archive/refs/heads/main.zip' -OutFile 'update.zip'; Write-Host 'Extrayendo archivos...' -ForegroundColor CyAn; Expand-Archive -Path 'update.zip' -DestinationPath 'temp_update' -Force; Copy-Item -Path 'temp_update\EcovibesXpress_dowloader--main\*' -Destination '.' -Recurse -Force; Remove-Item -Path 'update.zip', 'temp_update' -Recurse -Force"
+    if errorlevel 1 (
+        echo  [ERROR] No se pudo descargar la actualizacion. Reinstala el programa o instala Git.
+        pause
+        exit /b 1
+    )
+    goto DEPENDENCIES
 )
 
-REM ─── Update from GitHub ──────────────────────────────────────────
+REM ─── Update from GitHub (Git Mode) ───────────────────────────────
 set "REPO_URL=https://github.com/isaactabals-ship-it/EcovibesXpress_dowloader-.git"
 
 if not exist ".git" (
@@ -31,6 +37,8 @@ if not exist ".git" (
     git fetch --all
     git reset --hard origin/main
 )
+
+:DEPENDENCIES
 
 echo.
 echo  [2/2] Verificando y actualizando dependencias...
