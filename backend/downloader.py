@@ -9,6 +9,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_DIR = os.path.join(BASE_DIR, "downloads")
 FFMPEG_DIR = os.path.join(BASE_DIR, "ffmpeg")
 
+# Add FFmpeg to PATH if it exists locally
+if os.path.isdir(FFMPEG_DIR):
+    os.environ["PATH"] = FFMPEG_DIR + os.pathsep + os.environ["PATH"]
+
 # Resolution → yt-dlp format selector (Flexible, letting FFmpeg handle MP4 conversion)
 QUALITY_MAP = {
     "best":  "bestvideo+bestaudio/best",

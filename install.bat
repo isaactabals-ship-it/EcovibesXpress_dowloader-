@@ -50,7 +50,7 @@ if exist "ffmpeg\ffmpeg.exe" (
     echo  [OK] FFmpeg ya esta instalado, saltando descarga.
 ) else (
     REM Download ffmpeg using PowerShell
-    powershell -Command "& { $url = 'https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip'; $dest = 'ffmpeg\ffmpeg.zip'; Write-Host '  Descargando FFmpeg...'; Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing; Write-Host '  Extrayendo...'; Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip = [System.IO.Compression.ZipFile]::OpenRead($dest); foreach ($entry in $zip.Entries) { if ($entry.Name -eq 'ffmpeg.exe' -or $entry.Name -eq 'ffprobe.exe') { [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, \"ffmpeg\$($entry.Name)\", $true) } }; $zip.Dispose(); Remove-Item $dest; Write-Host '  FFmpeg instalado correctamente.' }"
+    powershell -Command "& { $url = 'https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip'; $dest = 'ffmpeg\ffmpeg.zip'; Write-Host '  Descargando FFmpeg zip (~120 MB)...'; Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing; Write-Host '  Extrayendo binaries...'; Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip = [System.IO.Compression.ZipFile]::OpenRead($dest); foreach ($entry in $zip.Entries) { if ($entry.Name -eq 'ffmpeg.exe' -or $entry.Name -eq 'ffprobe.exe') { [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, \"ffmpeg\$($entry.Name)\", $true) } }; $zip.Dispose(); Remove-Item $dest; Write-Host '  FFmpeg instalado correctamente.' }"
 )
 
 REM ─── Create downloads folder ─────────────────────────────────────

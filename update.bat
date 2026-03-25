@@ -59,6 +59,17 @@ if exist "frontend\package.json" (
     echo    [AVISO] No se encontro la carpeta del frontend.
 )
 
+REM ─── FFmpeg check ───────────────────────────────────────────────
+echo  - Verificando FFmpeg...
+if not exist "ffmpeg" mkdir ffmpeg
+
+if exist "ffmpeg\ffmpeg.exe" (
+    echo    [OK] FFmpeg ya esta presente.
+) else (
+    echo    [!] FFmpeg no encontrado. Descargando (~120 MB)...
+    powershell -Command "& { $url = 'https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip'; $dest = 'ffmpeg\ffmpeg.zip'; Write-Host '      Descargando FFmpeg zip...'; Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing; Write-Host '      Extrayendo binaries...'; Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip = [System.IO.Compression.ZipFile]::OpenRead($dest); foreach ($entry in $zip.Entries) { if ($entry.Name -eq 'ffmpeg.exe' -or $entry.Name -eq 'ffprobe.exe') { [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, \"ffmpeg\$($entry.Name)\", $true) } }; $zip.Dispose(); Remove-Item $dest; Write-Host '      FFmpeg instalado con exito.' }"
+)
+
 echo.
 echo  ====================================================
 echo    ¡Actualizacion completada con exito!
